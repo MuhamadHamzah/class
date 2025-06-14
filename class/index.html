@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beautiful Class Task List</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="public/ti.png" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="logo">
+            <div class="logo-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+              </svg>
+            </div>
+            <h1>Class Task List</h1>
+          </div>
+          <p class="subtitle">
+            Stay organized and track your academic progress
+          </p>
+        </div>
+      </header>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon active">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12,6 12,12 16,14" />
+            </svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-number" id="activeCount">0</div>
+            <div class="stat-label">Active Tasks</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon completed">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-number" id="completedCount">0</div>
+            <div class="stat-label">Completed</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon progress">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="12" x2="18" y2="12" />
+              <line x1="6" y1="12" x2="2" y2="12" />
+              <line x1="12" y1="6" x2="12" y2="2" />
+              <line x1="12" y1="22" x2="12" y2="18" />
+            </svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-number" id="progressPercent">0%</div>
+            <div class="stat-label">Progress</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-section" id="progressSection" style="display: none">
+        <div class="progress-header">
+          <span class="progress-title">Overall Progress</span>
+          <span class="progress-text" id="progressText">0 of 0 tasks</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <!-- Add Task Section -->
+      <div class="add-task-section">
+        <div class="input-group">
+          <input
+            type="text"
+            id="taskInput"
+            placeholder="Add a new task... (Press Enter to add)"
+            class="task-input"
+          />
+          <button id="addTaskBtn" class="add-btn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Add Task
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="filter-section">
+        <button class="filter-btn active" data-filter="all">
+          All Tasks
+          <span class="filter-count" id="allCount">0</span>
+        </button>
+        <button class="filter-btn" data-filter="active">
+          Active
+          <span class="filter-count" id="activeFilterCount">0</span>
+        </button>
+        <button class="filter-btn" data-filter="completed">
+          Completed
+          <span class="filter-count" id="completedFilterCount">0</span>
+        </button>
+      </div>
+
+      <!-- Tasks List -->
+      <div class="tasks-container">
+        <div id="tasksList" class="tasks-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+          </div>
+          <h3 id="emptyTitle">No tasks yet</h3>
+          <p id="emptyMessage">Add your first task to get started</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Keep up the great work! 🎓</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
